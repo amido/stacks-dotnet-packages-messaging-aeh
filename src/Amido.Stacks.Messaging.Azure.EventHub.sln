@@ -5,6 +5,15 @@ VisualStudioVersion = 16.0.31613.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Amido.Stacks.Messaging.Azure.EventHub", "Amido.Stacks.Messaging.Azure.EventHub\Amido.Stacks.Messaging.Azure.EventHub.csproj", "{22FDDE74-7DAA-47B0-9C6C-F7683FCBD3E8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8839F185-4AD2-49F6-A758-504C54A0CAF5}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{C177E671-7D5B-4D81-B778-569D92EF8106}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amido.Stacks.Messaging.Azure.EventHub.Tests", "Amido.Stacks.Messaging.Azure.EventHub.Tests\Amido.Stacks.Messaging.Azure.EventHub.Tests.csproj", "{2B7AD15A-4B2A-455C-8CAF-12ACFD7E1713}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +24,16 @@ Global
 		{22FDDE74-7DAA-47B0-9C6C-F7683FCBD3E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22FDDE74-7DAA-47B0-9C6C-F7683FCBD3E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22FDDE74-7DAA-47B0-9C6C-F7683FCBD3E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B7AD15A-4B2A-455C-8CAF-12ACFD7E1713}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B7AD15A-4B2A-455C-8CAF-12ACFD7E1713}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B7AD15A-4B2A-455C-8CAF-12ACFD7E1713}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B7AD15A-4B2A-455C-8CAF-12ACFD7E1713}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2B7AD15A-4B2A-455C-8CAF-12ACFD7E1713} = {C177E671-7D5B-4D81-B778-569D92EF8106}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F45F538C-5952-46FC-928E-44CB4F47D43C}
