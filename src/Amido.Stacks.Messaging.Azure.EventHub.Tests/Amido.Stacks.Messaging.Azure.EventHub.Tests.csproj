@@ -30,4 +30,10 @@
     <ProjectReference Include="..\Amido.Stacks.Messaging.Azure.EventHub\Amido.Stacks.Messaging.Azure.EventHub.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
