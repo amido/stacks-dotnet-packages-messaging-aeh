@@ -18,8 +18,8 @@ namespace Amido.Stacks.Messaging.Azure.EventHub.Tests
 
             config.Should().NotBeNull();
             config.Publisher.Should().NotBeNull();
-            config.Publisher.EventHubNamespaceConnectionString.Should().NotBeNullOrEmpty();
-            config.Publisher.EventHubName.Should().NotBeNullOrEmpty();
+            config.Publisher.NamespaceConnectionString.Should().NotBeNull();
+            config.Publisher.Name.Should().NotBeNullOrEmpty();
         }
 
         [Fact]
@@ -29,9 +29,9 @@ namespace Amido.Stacks.Messaging.Azure.EventHub.Tests
 
             config.Should().NotBeNull();
             config.Consumer.Should().NotBeNull();
-            config.Consumer.EventHubNamespaceConnectionString.Should().NotBeNullOrEmpty();
-            config.Consumer.EventHubName.Should().NotBeNullOrEmpty();
-            config.Consumer.BlobStorageConnectionString.Should().NotBeNullOrEmpty();
+            config.Consumer.NamespaceConnectionString.Should().NotBeNull();
+            config.Consumer.Name.Should().NotBeNullOrEmpty();
+            config.Consumer.BlobStorageConnectionString.Should().NotBeNull();
             config.Consumer.BlobContainerName.Should().NotBeNullOrEmpty();
         }
     }
