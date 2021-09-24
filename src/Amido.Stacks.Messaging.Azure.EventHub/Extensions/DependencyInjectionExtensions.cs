@@ -1,10 +1,6 @@
 ﻿using Amido.Stacks.Messaging.Azure.EventHub.Configuration;
 using Amido.Stacks.Messaging.Azure.EventHub.Consumer;
 using Amido.Stacks.Messaging.Azure.EventHub.Publisher;
-using Azure.Messaging.EventHubs;
-using Azure.Messaging.EventHubs.Consumer;
-using Azure.Messaging.EventHubs.Producer;
-using Azure.Storage.Blobs;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using System;
@@ -51,10 +47,6 @@ namespace Microsoft.Extensions.DependencyInjection
 
             services.TryAddTransient<IEventHubProducerClientFactory, EventHubProducerClientFactory>();
 
-            services.AddSingleton(s => new EventHubProducerClient(
-                configuration.EventHubNamespaceConnectionString,
-                configuration.EventHubName));
-
             return true;
         }
 
@@ -65,15 +57,8 @@ namespace Microsoft.Extensions.DependencyInjection
                 return false;
             }
 
-
             services.TryAddTransient<IEventProcessorClientFactory, EventProcessorClientFactory>();
             services.AddTransient<IEventConsumer, EventConsumer>();
-
-            //services.AddSingleton(s => new EventProcessorClient(
-            //    new BlobContainerClient(configuration.BlobStorageConnectionString, configuration.BlobContainerName),
-            //    EventHubConsumerClient.DefaultConsumerGroupName,
-            //    configuration.EventHubNamespaceConnectionString,
-            //    configuration.EventHubName));
 
             return true;
         }
