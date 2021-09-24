@@ -10,7 +10,7 @@ namespace Amido.Stacks.Messaging.Azure.EventHub.Tests
         [Fact]
         public void Ensure_Publisher_Configuration_Is_Parsed_Correctly()
         {
-            var config = Config.For<EventHubConfiguration>("EventHub");
+            var config = Config.For<EventHubConfiguration>("EventHubConfiguration");
 
             config.Should().NotBeNull();
             config.Publisher.Should().NotBeNull();
@@ -21,7 +21,7 @@ namespace Amido.Stacks.Messaging.Azure.EventHub.Tests
         [Fact]
         public void Ensure_Consumer_Configuration_Is_Parsed_Correctly()
         {
-            var config = Config.For<EventHubConfiguration>("EventHub");
+            var config = Config.For<EventHubConfiguration>("EventHubConfiguration");
 
             config.Should().NotBeNull();
             config.Consumer.Should().NotBeNull();
