@@ -1,15 +1,12 @@
 ﻿using Amido.Stacks.Configuration;
 using Amido.Stacks.Messaging.Azure.EventHub.Configuration;
 using Amido.Stacks.Messaging.Azure.EventHub.Consumer;
-using Amido.Stacks.Messaging.Azure.EventHub.Publisher;
 using Azure.Messaging.EventHubs;
 using Azure.Messaging.EventHubs.Consumer;
 using Azure.Messaging.EventHubs.Producer;
 using Azure.Storage.Blobs;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using System;
-using System.Threading.Tasks;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -52,8 +49,8 @@ namespace Microsoft.Extensions.DependencyInjection
             }
 
             var secretResolver = services.BuildServiceProvider().GetService<ISecretResolver<string>>();
-            services.AddSingleton(async s => new EventHubProducerClient(
-                connectionString: await secretResolver.ResolveSecretAsync(configuration.NamespaceConnectionString),
+            services.AddSingleton(s => new EventHubProducerClient(
+                connectionString: secretResolver.ResolveSecretAsync(configuration.NamespaceConnectionString).Result,
                 eventHubName: configuration.EventHubName));
 
             //services.TryAddTransient<IEventHubProducerClientFactory, EventHubProducerClientFactory>();
@@ -69,13 +66,12 @@ namespace Microsoft.Extensions.DependencyInjection
             }
 
             var secretResolver = services.BuildServiceProvider().GetService<ISecretResolver<string>>();
-            services.AddSingleton(async s => new EventProcessorClient(
-                checkpointStore: new BlobContainerClient(await secretResolver.ResolveSecretAsync(configuration.BlobStorageConnectionString), configuration.BlobContainerName),
+            services.AddSingleton(s => new EventProcessorClient(
+                checkpointStore: new BlobContainerClient(secretResolver.ResolveSecretAsync(configuration.BlobStorageConnectionString).Result, configuration.BlobContainerName),
                 consumerGroup: EventHubConsumerClient.DefaultConsumerGroupName,
-                connectionString: await secretResolver.ResolveSecretAsync(configuration.NamespaceConnectionString),
+                connectionString: secretResolver.ResolveSecretAsync(configuration.NamespaceConnectionString).Result,
                 configuration.EventHubName));
 
-            //services.TryAddTransient<IEventProcessorClientFactory, EventProcessorClientFactory>();
             services.AddTransient<IEventConsumer, EventConsumer>();
 
             return true;
