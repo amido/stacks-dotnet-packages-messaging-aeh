@@ -1,9 +1,15 @@
-﻿using Amido.Stacks.Messaging.Azure.EventHub.Configuration;
+﻿using Amido.Stacks.Configuration;
+using Amido.Stacks.Messaging.Azure.EventHub.Configuration;
 using Amido.Stacks.Messaging.Azure.EventHub.Consumer;
 using Amido.Stacks.Messaging.Azure.EventHub.Publisher;
+using Azure.Messaging.EventHubs;
+using Azure.Messaging.EventHubs.Consumer;
+using Azure.Messaging.EventHubs.Producer;
+using Azure.Storage.Blobs;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using System;
+using System.Threading.Tasks;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -45,7 +51,12 @@ namespace Microsoft.Extensions.DependencyInjection
                 return false;
             }
 
-            services.TryAddTransient<IEventHubProducerClientFactory, EventHubProducerClientFactory>();
+            var secretResolver = services.BuildServiceProvider().GetService<ISecretResolver<string>>();
+            services.AddSingleton(async s => new EventHubProducerClient(
+                connectionString: await secretResolver.ResolveSecretAsync(configuration.NamespaceConnectionString),
+                eventHubName: configuration.EventHubName));
+
+            //services.TryAddTransient<IEventHubProducerClientFactory, EventHubProducerClientFactory>();
 
             return true;
         }
@@ -57,7 +68,14 @@ namespace Microsoft.Extensions.DependencyInjection
                 return false;
             }
 
-            services.TryAddTransient<IEventProcessorClientFactory, EventProcessorClientFactory>();
+            var secretResolver = services.BuildServiceProvider().GetService<ISecretResolver<string>>();
+            services.AddSingleton(async s => new EventProcessorClient(
+                checkpointStore: new BlobContainerClient(await secretResolver.ResolveSecretAsync(configuration.BlobStorageConnectionString), configuration.BlobContainerName),
+                consumerGroup: EventHubConsumerClient.DefaultConsumerGroupName,
+                connectionString: await secretResolver.ResolveSecretAsync(configuration.NamespaceConnectionString),
+                configuration.EventHubName));
+
+            //services.TryAddTransient<IEventProcessorClientFactory, EventProcessorClientFactory>();
             services.AddTransient<IEventConsumer, EventConsumer>();
 
             return true;
