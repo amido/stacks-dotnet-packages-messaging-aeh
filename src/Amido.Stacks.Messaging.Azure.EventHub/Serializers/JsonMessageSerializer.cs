@@ -1,6 +1,6 @@
-﻿using System.Text;
-using Microsoft.Azure.EventHubs;
+﻿using Microsoft.Azure.EventHubs;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace Amido.Stacks.Messaging.Azure.EventHub.Serializers
 {

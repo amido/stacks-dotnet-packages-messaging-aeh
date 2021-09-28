@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xunit;
-using Amido.Stacks.Testing.Settings;
-using Config = Amido.Stacks.Testing.Settings.Configuration;
-using Amido.Stacks.Messaging.Azure.EventHub.Configuration;
+﻿using Amido.Stacks.Messaging.Azure.EventHub.Configuration;
 using FluentAssertions;
+using Xunit;
+using Config = Amido.Stacks.Testing.Settings.Configuration;
 
 namespace Amido.Stacks.Messaging.Azure.EventHub.Tests
 {
@@ -14,24 +10,24 @@ namespace Amido.Stacks.Messaging.Azure.EventHub.Tests
         [Fact]
         public void Ensure_Publisher_Configuration_Is_Parsed_Correctly()
         {
-            var config = Config.For<EventHubConfiguration>("EventHub");
+            var config = Config.For<EventHubConfiguration>("EventHubConfiguration");
 
             config.Should().NotBeNull();
             config.Publisher.Should().NotBeNull();
-            config.Publisher.EventHubNamespaceConnectionString.Should().NotBeNullOrEmpty();
+            config.Publisher.NamespaceConnectionString.Should().NotBeNull();
             config.Publisher.EventHubName.Should().NotBeNullOrEmpty();
         }
 
         [Fact]
         public void Ensure_Consumer_Configuration_Is_Parsed_Correctly()
         {
-            var config = Config.For<EventHubConfiguration>("EventHub");
+            var config = Config.For<EventHubConfiguration>("EventHubConfiguration");
 
             config.Should().NotBeNull();
             config.Consumer.Should().NotBeNull();
-            config.Consumer.EventHubNamespaceConnectionString.Should().NotBeNullOrEmpty();
+            config.Consumer.NamespaceConnectionString.Should().NotBeNull();
             config.Consumer.EventHubName.Should().NotBeNullOrEmpty();
-            config.Consumer.BlobStorageConnectionString.Should().NotBeNullOrEmpty();
+            config.Consumer.BlobStorageConnectionString.Should().NotBeNull();
             config.Consumer.BlobContainerName.Should().NotBeNullOrEmpty();
         }
     }

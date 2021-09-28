@@ -1,13 +1,17 @@
-﻿namespace Amido.Stacks.Messaging.Azure.EventHub.Configuration
+﻿using Amido.Stacks.Configuration;
+
+namespace Amido.Stacks.Messaging.Azure.EventHub.Configuration
 {
-    public class EventHubConsumerConfiguration
+    public class EventHubConsumerConfiguration : EventHubEntityConfiguration
     {
-        public string EventHubNamespaceConnectionString { get; set; }
+        /// <summary>
+        /// Connection string for the blob storage account.
+        /// </summary>
+        public Secret BlobStorageConnectionString { get; set; }
 
-        public string EventHubName { get; set; }
-
-        public string BlobStorageConnectionString { get; set; }
-
+        /// <summary>
+        /// Blob storage container name.
+        /// </summary>
         public string BlobContainerName { get; set; }
     }
 }

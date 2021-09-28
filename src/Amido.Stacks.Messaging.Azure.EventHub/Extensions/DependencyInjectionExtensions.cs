@@ -1,4 +1,5 @@
-﻿using Amido.Stacks.Messaging.Azure.EventHub.Configuration;
+﻿using Amido.Stacks.Configuration;
+using Amido.Stacks.Messaging.Azure.EventHub.Configuration;
 using Amido.Stacks.Messaging.Azure.EventHub.Consumer;
 using Azure.Messaging.EventHubs;
 using Azure.Messaging.EventHubs.Consumer;
@@ -47,9 +48,12 @@ namespace Microsoft.Extensions.DependencyInjection
                 return false;
             }
 
+            var secretResolver = services.BuildServiceProvider().GetService<ISecretResolver<string>>();
             services.AddSingleton(s => new EventHubProducerClient(
-                configuration.EventHubNamespaceConnectionString, 
-                configuration.EventHubName));
+                connectionString: secretResolver.ResolveSecretAsync(configuration.NamespaceConnectionString).Result,
+                eventHubName: configuration.EventHubName));
+
+            //services.TryAddTransient<IEventHubProducerClientFactory, EventHubProducerClientFactory>();
 
             return true;
         }
@@ -61,13 +65,14 @@ namespace Microsoft.Extensions.DependencyInjection
                 return false;
             }
 
-            services.AddTransient<IEventConsumer, EventConsumer>();
-
+            var secretResolver = services.BuildServiceProvider().GetService<ISecretResolver<string>>();
             services.AddSingleton(s => new EventProcessorClient(
-                new BlobContainerClient(configuration.BlobStorageConnectionString, configuration.BlobContainerName),
-                EventHubConsumerClient.DefaultConsumerGroupName,
-                configuration.EventHubNamespaceConnectionString,
+                checkpointStore: new BlobContainerClient(secretResolver.ResolveSecretAsync(configuration.BlobStorageConnectionString).Result, configuration.BlobContainerName),
+                consumerGroup: EventHubConsumerClient.DefaultConsumerGroupName,
+                connectionString: secretResolver.ResolveSecretAsync(configuration.NamespaceConnectionString).Result,
                 configuration.EventHubName));
+
+            services.AddTransient<IEventConsumer, EventConsumer>();
 
             return true;
         }

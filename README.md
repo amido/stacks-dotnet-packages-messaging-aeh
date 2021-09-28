@@ -73,14 +73,23 @@ In this case the `NotifyEvent` has a `NotifyEventHandler`. The handler implement
 {
     "EventHubConfiguration": {
         "Publisher": {
-            "EventHubNamespaceConnectionString": "",
+            "NamespaceConnectionString": {
+                "Identifier": "EVENTHUB_CONNECTIONSTRING",
+                "Source": "Environment"
+            },
             "EventHubName": "stacks-event-hub"
         },
         "Consumer": {
-            "EventHubNamespaceConnectionString": "",
-            "EventHubName": "",
-            "BlobStorageConnectionString": "",
-            "BlobContainerName": ""
+            "NamespaceConnectionString": {
+                "Identifier": "EVENTHUB_CONNECTIONSTRING",
+                "Source": "Environment"
+            },
+            "EventHubName": "stacks-event-hub",
+            "BlobStorageConnectionString": {
+                "Identifier": "STORAGE_CONNECTIONSTRING",
+                "Source": "Environment"
+            },
+            "BlobContainerName": "stacks-blob-container-name"
         }
     }
 }
@@ -91,6 +100,7 @@ public class Startup
 {
     public void ConfigureServices(IServiceCollection services)
     {
+        services.AddSecrets();
         services.AddTransient<IApplicationEventPublisher, EventPublisher>();
         services.Configure<EventHubConfiguration>(context.Configuration.GetSection("EventHubConfiguration"));
         services.AddEventHub();
