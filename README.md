@@ -14,6 +14,7 @@ The main goal is:
 - `Amido.Stacks.DependencyInjection`
 - `Azure.Messaging.EventHubs`
 - `Azure.Messaging.EventHubs.Processor`
+- `Microsoft.Azure.WebJobs.Extensions.EventHubs`
 
 ### 1.2 Currently Supported messages
 
