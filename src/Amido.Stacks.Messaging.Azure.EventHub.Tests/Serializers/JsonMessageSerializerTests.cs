@@ -1,5 +1,5 @@
-﻿using Amido.Stacks.Application.CQRS.Events;
-using Amido.Stacks.Messaging.Azure.EventHub.Serializers;
+﻿using Amido.Stacks.Messaging.Azure.EventHub.Serializers;
+using Amido.Stacks.Messaging.Events;
 using Microsoft.Azure.EventHubs;
 using Newtonsoft.Json;
 using Shouldly;
@@ -17,17 +17,17 @@ namespace Amido.Stacks.Messaging.Azure.EventHub.Tests.Serializers
             // Arrange
             var parser = new JsonMessageSerializer();
             var correlationId = Guid.NewGuid();
-            var menuCreatedEvent = new MenuCreatedEvent(101, correlationId, new Guid("C8A14B73F2A14696BEEFBD432AF27296"));
+            var menuCreatedEvent = new DummyEvent(101, correlationId);
             var jsonString = JsonConvert.SerializeObject(menuCreatedEvent);
             var byteArray = Encoding.UTF8.GetBytes(jsonString);
             var eventData = new EventData(byteArray);
 
             // Act
-            var result = parser.Read<MenuCreatedEvent>(eventData);
+            var result = parser.Read<DummyEvent>(eventData);
 
             // Assert
             result.ShouldNotBeNull();
-            result.ShouldBeOfType(typeof(MenuCreatedEvent));
+            result.ShouldBeOfType(typeof(DummyEvent));
             result.CorrelationId.ShouldBe(correlationId);
         }
     }

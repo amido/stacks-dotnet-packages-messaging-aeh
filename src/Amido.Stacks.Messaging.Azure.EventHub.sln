@@ -12,7 +12,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{C177E671-7D5B-4D81-B778-569D92EF8106}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amido.Stacks.Messaging.Azure.EventHub.Tests", "Amido.Stacks.Messaging.Azure.EventHub.Tests\Amido.Stacks.Messaging.Azure.EventHub.Tests.csproj", "{2B7AD15A-4B2A-455C-8CAF-12ACFD7E1713}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Amido.Stacks.Messaging.Azure.EventHub.Tests", "Amido.Stacks.Messaging.Azure.EventHub.Tests\Amido.Stacks.Messaging.Azure.EventHub.Tests.csproj", "{2B7AD15A-4B2A-455C-8CAF-12ACFD7E1713}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amido.Stacks.Messaging.Events", "Amido.Stacks.Messaging.Events\Amido.Stacks.Messaging.Events.csproj", "{23460374-D6B5-4A20-800E-E6B6C6668C44}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,12 +30,17 @@ Global
 		{2B7AD15A-4B2A-455C-8CAF-12ACFD7E1713}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B7AD15A-4B2A-455C-8CAF-12ACFD7E1713}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B7AD15A-4B2A-455C-8CAF-12ACFD7E1713}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23460374-D6B5-4A20-800E-E6B6C6668C44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23460374-D6B5-4A20-800E-E6B6C6668C44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23460374-D6B5-4A20-800E-E6B6C6668C44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23460374-D6B5-4A20-800E-E6B6C6668C44}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2B7AD15A-4B2A-455C-8CAF-12ACFD7E1713} = {C177E671-7D5B-4D81-B778-569D92EF8106}
+		{23460374-D6B5-4A20-800E-E6B6C6668C44} = {C177E671-7D5B-4D81-B778-569D92EF8106}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F45F538C-5952-46FC-928E-44CB4F47D43C}

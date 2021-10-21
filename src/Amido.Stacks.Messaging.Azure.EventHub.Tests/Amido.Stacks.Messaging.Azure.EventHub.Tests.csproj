@@ -28,12 +28,17 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Amido.Stacks.Messaging.Azure.EventHub\Amido.Stacks.Messaging.Azure.EventHub.csproj" />
+    <ProjectReference Include="..\Amido.Stacks.Messaging.Events\Amido.Stacks.Messaging.Events.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Events\" />
   </ItemGroup>
 
 </Project>
