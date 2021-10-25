@@ -9,7 +9,6 @@ The main goal is:
 ## 1. Registration/Usage
 
 ### 1.1 Dependencies
-- `Amido.Stacks.Application.CQRS.Events`
 - `Amido.Stacks.Configuration`
 - `Amido.Stacks.DependencyInjection`
 - `Azure.Messaging.EventHubs`
