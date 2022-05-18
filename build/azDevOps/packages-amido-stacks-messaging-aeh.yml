@@ -78,6 +78,7 @@ stages:
   - stage: BuildAndDeploy
     variables:
       - group: amido-stacks-infra-credentials-nonprod
+      - group: amido-stacks-nuget-credentials
     jobs:
       - job: Validation
         pool:
