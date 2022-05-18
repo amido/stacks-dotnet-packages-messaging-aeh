@@ -92,7 +92,7 @@ stages:
             parameters:
               sourcebranch_name: "$(Build.SourceBranchName)"
               raw_version_number: "$(Version.Number)"
-              default_branch: 'main'
+              default_branch: 'master'
 
           # Validates all YAML files in the repo to check they adhere to standards
           - template: azDevOps/azure/templates/v3/steps/build/test-validate-yaml.yml@templates
