@@ -40,10 +40,6 @@ namespace Amido.Stacks.Messaging.Azure.EventHub.Publisher
             {
                 _log.LogError($"Something went wrong. Exception thrown: {exception.Message}");
             }
-            finally
-            {
-                await _eventHubProducerClient.DisposeAsync();
-            }
         }
     }
 }
