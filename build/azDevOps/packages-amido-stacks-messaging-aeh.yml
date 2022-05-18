@@ -104,8 +104,6 @@ stages:
 
       - job: BuildDotNet
         dependsOn: Validation
-        variables:
-          - group: amido-stacks-nuget-credentials
         pool:
           vmImage: "windows-2019"
         continueOnError: false
@@ -124,3 +122,4 @@ stages:
               cosmosdb_secret: false
               # .NET Core version variables
               dotnet_core_version: "3.1.x"
+
