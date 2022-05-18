@@ -51,7 +51,7 @@ variables:
 trigger:
   branches:
     include:
-      - main
+      - master
   paths:
     include:
       - '*'
@@ -60,7 +60,7 @@ trigger:
 pr:
   branches:
     include:
-      - main
+      - master
 
 resources:
   repositories:
