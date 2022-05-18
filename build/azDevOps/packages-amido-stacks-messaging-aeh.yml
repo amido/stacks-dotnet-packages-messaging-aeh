@@ -117,6 +117,7 @@ stages:
               package_feed: "$(Package.Feed)"
               publish_symbols: true
               publish_public: "$(Package.Public)"
+              use_nuget_service_connection: true
               nuget_service_connection: "$(Package.nuget_service_connection)"
               # Secret Config
               cosmosdb_secret: false
