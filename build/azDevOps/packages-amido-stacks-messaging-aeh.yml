@@ -78,7 +78,6 @@ stages:
   - stage: BuildAndDeploy
     variables:
       - group: amido-stacks-infra-credentials-nonprod
-      - group: amido-stacks-nuget-credentials
     jobs:
       - job: Validation
         pool:
@@ -105,6 +104,8 @@ stages:
 
       - job: BuildDotNet
         dependsOn: Validation
+        variables:
+          - group: amido-stacks-nuget-credentials
         pool:
           vmImage: "windows-2019"
         continueOnError: false
